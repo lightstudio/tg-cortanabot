@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -53,13 +54,19 @@ namespace CortanaBot.Controllers
 
         public async Task<IHttpActionResult> Post([FromBody] ApiReqContent jsonRpcValue)
         {
+            // Prep sender
+            var caller = new EventCaller
+            {
+                CallerName = jsonRpcValue.message.from.first_name,
+                CallerId = jsonRpcValue.message.chat.id,
+                Id = jsonRpcValue.message.message_id
+            };
+
             // Scenario fix
             // 1. Add bot
-            if (jsonRpcValue.message.from == null || jsonRpcValue.message.text == null)
+            if (jsonRpcValue.message.text == null)
             {
-                var r =  await
-                       InternalSendMessage("Hey!", jsonRpcValue.message.message_id.ToString(),
-                           jsonRpcValue.message.message_id.ToString());
+                var r = await Networking.Sender.SendMessagePackageAsync(new ProviderPackage("Hey!",caller, 65535));
                 if (r)
                     return new OkResult(new HttpRequestMessage(HttpMethod.Post, RequestTemplate.WebHookUrl));
                 return new InternalServerErrorResult(new HttpRequestMessage(HttpMethod.Post, RequestTemplate.WebHookUrl));
@@ -68,26 +75,21 @@ namespace CortanaBot.Controllers
             if (jsonRpcValue.message.text.Contains("/start"))
             {
                 var r =
-                    await
-                        InternalSendMessage("Hi, I am Cortana, your truly digital personal assistant.", jsonRpcValue.message.from.id.ToString(),
-                            jsonRpcValue.message.message_id.ToString());
+                    await Networking.Sender.SendMessagePackageAsync(new ProviderPackage("Hi, I am Cortana, your truly digital personal assistant.", caller, 65535));
                 if (r)
                     return new OkResult(new HttpRequestMessage(HttpMethod.Post, RequestTemplate.WebHookUrl));
                 return new InternalServerErrorResult(new HttpRequestMessage(HttpMethod.Post, RequestTemplate.WebHookUrl));
             }
 
-            // Prep sender
-            var caller = new EventCaller
-            {
-                CallerFirstName = jsonRpcValue.message.from.first_name,
-                CallerId = jsonRpcValue.message.chat.id,
-                Id = jsonRpcValue.message.message_id
-            };
-
+            
             // Ask Bing
             // Encode the content
             var textContent = jsonRpcValue.message.text;
-            textContent = textContent.Substring(textContent.IndexOf(' ') + 1);
+            if (textContent.StartsWith("/cortana")) textContent = textContent.Substring(textContent.IndexOf(' ') + 1);
+            if (textContent.EndsWith("?") || textContent.EndsWith("？")) textContent = textContent.Remove(textContent.Length - 1);
+            if (textContent.EndsWith("!") || textContent.EndsWith("！")) textContent = textContent.Remove(textContent.Length - 1);
+            if (textContent.EndsWith(".") || textContent.EndsWith("。")) textContent = textContent.Remove(textContent.Length - 1);
+            if (textContent.EndsWith("~") || textContent.EndsWith("/")) textContent = textContent.Remove(textContent.Length - 1);
             var bingContent = await Networking.BingContent.GetAsync(caller, textContent, RequestTemplate.Lang);
 
             // Normal mode

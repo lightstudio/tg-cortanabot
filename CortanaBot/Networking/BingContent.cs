@@ -33,10 +33,10 @@ namespace CortanaBot.Networking
             httpClient.DefaultRequestHeaders.Add("X-BM-DeviceDpi", "96");
             httpClient.DefaultRequestHeaders.Add("X-BM-DeviceScale", "1.000000");
             httpClient.DefaultRequestHeaders.Add("X-BM-DeviceDimensionsLogical", "480x800");
-            httpClient.DefaultRequestHeaders.Add("X-DeviceId", "1CB009C462E10B208FAFE968E04058C07F2CD3DFC9E2DF7F0985563621B90E95");
+            httpClient.DefaultRequestHeaders.Add("X-DeviceId", "1CB009C462E00B208FAFE968E04058C07D2CD3DFC9E2DF7F0985563621B90E35");
             httpClient.DefaultRequestHeaders.Add("X-BM-NetworkType", "Wi-Fi");
             httpClient.DefaultRequestHeaders.Add("X-BM-BuildNumber", " Windows Phone 6.3.0.0.9651");
-            httpClient.DefaultRequestHeaders.Add("X-BM-UserDisplayName", caller.CallerFirstName);
+            httpClient.DefaultRequestHeaders.Add("X-BM-UserDisplayName", caller.CallerName);
             httpClient.DefaultRequestHeaders.Add("AppContext", "{\"Stores\":\"Zest:NOKIA\",\"CatalogCountry\":\"CN\",\"OverrideCountry\":\"CN\",\"DisplayLanguageLocale\":\"zh-CN\",\"DeviceConfig\":\"268481538\",\"DeviceTypeStr\":\"winphone8.10\",\"DeviceModel\":\"RM-1019_1027\",\"SafeSearchRating\":\"99:1\"}");
             httpClient.DefaultRequestHeaders.Add("User-Agent", "Mozilla/5.0 (Mobile; Windows Phone 8.1; Android 4.0; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 530 Dual SIM) like iPhone OS 7_0_3 Mac OS X AppleWebKit/537 (KHTML, like Gecko) Mobile Safari/537");
             httpClient.DefaultRequestHeaders.Add("UA-CPU", "ARM");

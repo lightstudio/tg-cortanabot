@@ -2,10 +2,6 @@
 // The json definition
 namespace CortanaBot.Models
 {
-    /// <summary>
-    /// Internal JSON class.
-    /// See https://core.telegram.org/bots/api for more details.
-    /// </summary>
     public class ApiReply
     {
         public int chat_id { get; set; }

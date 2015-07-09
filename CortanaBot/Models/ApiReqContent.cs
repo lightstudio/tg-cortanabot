@@ -2,19 +2,13 @@
 // The json definition
 namespace CortanaBot.Models
 {
-    /// <summary>
-    /// Internal JSON class.
-    /// See https://core.telegram.org/bots/api for more details.
-    /// </summary>
     public class ApiReqContent
     {
         public Message message { get; set; }
+
+        public int update_id { get; set; }
     }
 
-    /// <summary>
-    /// Internal JSON class.
-    /// See https://core.telegram.org/bots/api for more details.
-    /// </summary>
     public class User
     {
         public int id { get; set; }
@@ -23,10 +17,6 @@ namespace CortanaBot.Models
         public string username { get; set; }
     }
 
-    /// <summary>
-    /// Internal JSON class.
-    /// See https://core.telegram.org/bots/api for more details.
-    /// </summary>
     public class Chat
     {
         public int id { get; set; }
@@ -36,10 +26,6 @@ namespace CortanaBot.Models
         public string username { get; set; }
     }
 
-    /// <summary>
-    /// Internal JSON class.
-    /// See https://core.telegram.org/bots/api for more details.
-    /// </summary>
     public class Message
     {
         public User from { get; set; }
