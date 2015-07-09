@@ -53,9 +53,17 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="NGraphics">
+      <HintPath>..\packages\NGraphics.0.2.2\lib\net45\NGraphics.dll</HintPath>
+    </Reference>
+    <Reference Include="NGraphics.Net">
+      <HintPath>..\packages\NGraphics.0.2.2\lib\net45\NGraphics.Net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -92,6 +100,25 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -116,26 +143,33 @@
     <Compile Include="Models\ApiReqContent.cs" />
     <Compile Include="Models\EventCaller.cs" />
     <Compile Include="Models\ProviderPackage.cs" />
+    <Compile Include="Models\RpcResult.cs" />
     <Compile Include="Networking\BingContent.cs" />
     <Compile Include="Networking\Sender.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Provider\CalculcatorProvider.cs" />
     <Compile Include="Provider\ChitChatProvider.cs" />
     <Compile Include="Provider\IContentProvider.cs" />
+    <Compile Include="Provider\MovieProvider.cs" />
+    <Compile Include="Provider\StockProvider.cs" />
     <Compile Include="Shared\RequestTemplate.cs" />
     <Compile Include="Utils\InterfaceHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
     <None Include="Properties\PublishProfiles\CortanaBot.pubxml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\CortanaBotInt.pubxml" />
+    <None Include="Properties\PublishProfiles\Debug.pubxml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
