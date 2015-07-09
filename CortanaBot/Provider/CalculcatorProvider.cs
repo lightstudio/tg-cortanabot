@@ -37,7 +37,6 @@ namespace CortanaBot.Provider
             Name = "Cortana calculcator content provider";
             Author = "Ben.imbushuo Wang";
             Bcp47LangTag = "zh-CN";
-            Version = new Version(1, 0, 0, 0);
             Priority = 1;
         }
     }
